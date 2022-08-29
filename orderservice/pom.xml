@@ -14,11 +14,13 @@
 	<name>orderservice</name>
 	<description>Demo project for contract testing</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<pact.version>3.3.6</pact.version>
+		<pact.version>4.3.4</pact.version>
 		<lombok.version>1.18.20</lombok.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,35 +38,62 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!--<dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>au.com.dius.pact</groupId>
 			<artifactId>consumer</artifactId>
 			<version>${pact.version}</version>
 			<scope>test</scope>
-		</dependency>-->
-		<!--<dependency>
-			<groupId>au.com.dius.pact.consumer</groupId>
-			<artifactId>junit</artifactId>
-			<version>${pact.version}</version>
-			<scope>test</scope>
-		</dependency>-->
-		<dependency>
-			<groupId>au.com.dius</groupId>
-			<artifactId>pact-jvm-consumer-junit_2.11</artifactId>
-			<version>2.2.11</version>
 		</dependency>
 		<dependency>
+			<groupId>au.com.dius.pact</groupId>
+			<artifactId>provider</artifactId>
+			<version>${pact.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>au.com.dius</groupId>
+			<artifactId>pact-jvm-model</artifactId>
+			<version>3.6.15</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>au.com.dius.pact.consumer</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.3.4</version>
+			<scope>test</scope>
+		</dependency>
+		<!--		<dependency>
+                    <groupId>au.com.dius</groupId>
+                    <artifactId>pact-jvm-consumer-junit</artifactId>
+                    <version>4.0.9</version>
+                </dependency>-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<!--<dependency>
 			<groupId>au.com.dius</groupId>
 			<artifactId>pact-jvm-consumer-junit5_2.11</artifactId>
 			<version>3.5.24</version>
 			<scope>compile</scope>
-		</dependency>
-		<dependency>
+		</dependency>-->
+		<!--<dependency>
 			<groupId>au.com.dius</groupId>
 			<artifactId>pact-jvm-consumer_2.11</artifactId>
 			<version>3.5.24</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>-->
 		<!--<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -79,11 +108,16 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.19.1</version>
 				<configuration>
+					<includes>
+						<include>**/*Testing.java</include>
+					</includes>
+				</configuration>
+				<!--<configuration>
 					<systemPropertyVariables>
 						<pact.rootDir>${project.build.directory}/pacts</pact.rootDir>
 						<buildDirectory>${project.build.directory}</buildDirectory>
 					</systemPropertyVariables>
-				</configuration>
+				</configuration>-->
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -97,26 +131,25 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<!--<plugin>
+			<plugin>
 				<groupId>au.com.dius.pact.provider</groupId>
 				<artifactId>maven</artifactId>
-				<version>4.1.11</version>
+				<version>4.3.14</version>
 				<configuration>
-					&lt;!&ndash; <pactBrokerUrl></pactBrokerUrl> &ndash;&gt;
+					<!-- <pactBrokerUrl></pactBrokerUrl> -->
 					<serviceProviders>
 						<serviceProvider>
 							<name>ApiCustomerController</name>
 							<protocol>http</protocol>
 							<host>localhost</host>
-							<port>8080</port>
+							<port>8090</port>
 							<path>/</path>
 							<pactFileDirectory>target/pacts</pactFileDirectory>
 						</serviceProvider>
 					</serviceProviders>
 					<pactBrokerUrl/>
 				</configuration>
-			</plugin>-->
+			</plugin>
 		</plugins>
 	</build>
-
 </project>

@@ -31,7 +31,7 @@ public class ApiOrderController {
         return orderresponse;
     }
     @GetMapping(value="/api/orderStatus", produces = "application/json")
-    public Order orderStatus(@RequestBody Order order) throws URISyntaxException {
+    public Order orderStatus() throws URISyntaxException {
         Order orderresponse = new Order(172481,"In progress","In progress",Boolean.FALSE,"1234");
         //RestTemplate restTemplate = new RestTemplate();
         //ResponseEntity<Customer> customer = restTemplate.getForEntity(new URI("http://localhost:8090/api/customers/"+order.getCustomerId()),Customer.class);
